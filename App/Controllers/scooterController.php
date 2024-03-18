@@ -23,5 +23,15 @@ class scooterController extends Controller
 
     public function store()
     {
+
+        $array = explode(".", $_FILES['img']['name']);
+        $extension = $array[count($array) - 1];
+       
+        $nameImg = "scooter - " . uniqid() .  "." . $extension; //nom complert de la imatge
+
+        $src = $_FILES['img']['tmp_name']; //ruta temporal de la imatge
+        $dst = "scooters";
+
+        Store::store($src, $dst, $nameImg);
     }
 }
